@@ -10,6 +10,14 @@
   stat: path={{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz
   register: zookeeper_tarball_script
 
+- name: Copy zookeeper from local 
+  copy:
+    src: "{{ playbook_dir }}/files/zookeeper-{{zookeeper_version}}.tar.gz"
+    dest: "{{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz"
+  when: >
+    not zookeeper_download_from_mirror and
+    not zookeeper_tarball_script.stat.exists
+
 - name: Download zookeeper from S3
   s3:
     mode: get
@@ -28,8 +36,9 @@
   tags: bootstrap
   register: zookeeper_tarball_downloaded
   when: >
-    zookeeper_archive_s3_bucket is not defined or
-    zookeeper_archive_s3_object is not defined
+    (zookeeper_archive_s3_bucket is not defined or
+    zookeeper_archive_s3_object is not defined) and
+    zookeeper_download_from_mirror
 
 - name: Unpack tarball.
   command: tar xf {{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz --strip-components=1 chdir={{zookeeper_dir}} creates={{zookeeper_dir}}/bin
