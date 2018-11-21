@@ -35,7 +35,7 @@ zookeeper_url: http://www.us.apache.org/dist/zookeeper/zookeeper-{{zookeeper_ver
 
 # Flag that selects if systemd or upstart will be used for the init service:
 # Note: by default Ubuntu 15.04 and later use systemd (but support switch to upstart)
-zookeeper_debian_systemd_enabled: "{{ ansible_distribution_version|version_compare(15.04, '>=') }}"
+zookeeper_debian_systemd_enabled: "{{ ansible_distribution_version is version_compare(15.04, '>=') }}"
 zookeeper_debian_apt_install: false
 # (Optional:) add custom 'ppa' repositories depending on the distro version (only with debian_apt_install=true)
 # Example: to use a community zookeeper v3.4.8 deb pkg for Ubuntu 14.04 (where latest official is v3.4.5)
