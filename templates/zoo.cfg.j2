@@ -10,6 +10,9 @@ maxClientCnxns={{ zookeeper_max_client_connections }}
 autopurge.purgeInterval={{ zookeeper_autopurge_purgeInterval }}
 autopurge.snapRetainCount={{ zookeeper_autopurge_snapRetainCount }}
 {% endif %}
+{% if zookeeper_4lw_commands_whitelist != '' %}
+4lw.commands.whitelist={{ zookeeper_4lw_commands_whitelist }}
+{% endif %}
 
 {% for server in zookeeper_hosts %}
 {% if server.host is defined %}
