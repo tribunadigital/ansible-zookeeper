@@ -7,13 +7,13 @@
 
 # If the file exists already, the S3 call can experience errors
 - name: check whether the tarball is downloaded already
-  stat: path={{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz
+  stat: path={{zookeeper_tarball_dir}}/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz
   register: zookeeper_tarball_script
 
 - name: Copy zookeeper from local 
   copy:
-    src: "{{ playbook_dir }}/files/zookeeper-{{zookeeper_version}}.tar.gz"
-    dest: "{{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz"
+    src: "{{ playbook_dir }}/files/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz"
+    dest: "{{zookeeper_tarball_dir}}/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz"
   when: >
     not zookeeper_download_from_mirror and
     not zookeeper_tarball_script.stat.exists
@@ -23,7 +23,7 @@
     mode: get
     bucket: "{{zookeeper_archive_s3_bucket}}"
     object: "{{zookeeper_archive_s3_object}}"
-    dest: "{{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz"
+    dest: "{{zookeeper_tarball_dir}}/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz"
   register: zookeeper_s3_tarball_downloaded
   tags: bootstrap
   when: >
@@ -32,7 +32,7 @@
     not zookeeper_tarball_script.stat.exists
 
 - name: Download zookeeper version.
-  get_url: url={{zookeeper_url}} dest={{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz
+  get_url: url={{zookeeper_url}} dest={{zookeeper_tarball_dir}}/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz
   tags: bootstrap
   register: zookeeper_tarball_downloaded
   when: >
@@ -41,7 +41,13 @@
     zookeeper_download_from_mirror
 
 - name: Unpack tarball.
-  command: tar xf {{zookeeper_tarball_dir}}/zookeeper-{{zookeeper_version}}.tar.gz --strip-components=1 chdir={{zookeeper_dir}} creates={{zookeeper_dir}}/bin
+  unarchive:
+    src: "{{zookeeper_tarball_dir}}/apache-zookeeper-{{zookeeper_version}}-bin.tar.gz"
+    dest: "{{zookeeper_dir}}"
+    creates: "{{zookeeper_dir}}/bin"
+    remote_src: yes
+    extra_opts:
+      - --strip-components=1
   tags: bootstrap
 
 - group: name=zookeeper system=yes
