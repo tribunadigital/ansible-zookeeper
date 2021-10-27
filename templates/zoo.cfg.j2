@@ -13,6 +13,7 @@ autopurge.snapRetainCount={{ zookeeper_autopurge_snapRetainCount }}
 {% if zookeeper_4lw_commands_whitelist != '' %}
 4lw.commands.whitelist={{ zookeeper_4lw_commands_whitelist }}
 {% endif %}
+quorum.cnxn.threads.size={{ zookeeper_quorum_cnxn_threads_size }}
 
 {% for server in zookeeper_hosts %}
 {% if server.host is defined %}
