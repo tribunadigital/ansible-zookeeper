@@ -1,10 +1,10 @@
-tickTime={{ tick_time }}
-dataDir={{ data_dir }}
-dataLogDir={{ log_dir }}
-clientPort={{ client_port }}
-clientPortAddress={{ client_port_address }}
-initLimit={{ init_limit }}
-syncLimit={{ sync_limit }}
+tickTime={{ zookeeper_tick_time }}
+dataDir={{ zookeeper_data_dir }}
+dataLogDir={{ zookeeper_log_dir }}
+clientPort={{ zookeeper_client_port }}
+clientPortAddress={{ zookeeper_client_port_address }}
+initLimit={{ zookeeper_init_limit }}
+syncLimit={{ zookeeper_sync_limit }}
 maxClientCnxns={{ zookeeper_max_client_connections }}
 {% if zookeeper_autopurge_purgeInterval > 0 %}
 autopurge.purgeInterval={{ zookeeper_autopurge_purgeInterval }}

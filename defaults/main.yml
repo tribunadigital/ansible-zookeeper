@@ -14,11 +14,11 @@ zookeeper_debian_apt_repositories: []
 apt_cache_timeout: 3600
 zookeeper_register_path_env: false
 
-client_port: 2181
-client_port_address: '0.0.0.0'
-init_limit: 5
-sync_limit: 2
-tick_time: 2000
+zookeeper_client_port: 2181
+zookeeper_client_port_address: '0.0.0.0'
+zookeeper_init_limit: 5
+zookeeper_sync_limit: 2
+zookeeper_tick_time: 2000
 zookeeper_autopurge_purgeInterval: 0
 zookeeper_autopurge_snapRetainCount: 10
 zookeeper_cluster_ports: "2888:3888"
@@ -26,8 +26,8 @@ zookeeper_max_client_connections: 60
 zookeeper_4lw_commands_whitelist: ''
 zookeeper_quorum_cnxn_threads_size: 20
 
-data_dir: /var/lib/zookeeper
-log_dir: /var/log/zookeeper
+zookeeper_data_dir: /var/lib/zookeeper
+zookeeper_log_dir: /var/log/zookeeper
 zookeeper_dir: "{{ zookeeper_debian_apt_install | ternary('/usr/share/zookeeper', '/opt/zookeeper-' + zookeeper_version) }}"
 zookeeper_conf_dir: "{{ zookeeper_debian_apt_install | ternary('/etc/zookeeper', zookeeper_dir) }}"
 zookeeper_tarball_dir: /opt/src
