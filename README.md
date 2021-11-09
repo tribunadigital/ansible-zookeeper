@@ -55,6 +55,7 @@ zookeeper_autopurge_snapRetainCount: 10
 zookeeper_cluster_ports: "2888:3888"
 zookeeper_max_client_connections: 60
 zookeeper_4lw_commands_whitelist: ''
+zookeeper_quorum_cnxn_threads_size: 20
 
 zookeeper_data_dir: /var/lib/zookeeper
 zookeeper_log_dir: /var/log/zookeeper
