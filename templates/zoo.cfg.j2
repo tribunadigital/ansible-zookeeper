@@ -6,14 +6,14 @@ clientPortAddress={{ zookeeper_client_port_address }}
 initLimit={{ zookeeper_init_limit }}
 syncLimit={{ zookeeper_sync_limit }}
 maxClientCnxns={{ zookeeper_max_client_connections }}
-preAllocSize={{ zookeeper_preAllocSize }}
-snapCount={{ zookeeper_snapCount }}
+preAllocSize={{ zookeeper_pre_alloc_size }}
+snapCount={{ zookeeper_snap_count }}
 {% if zookeeper_version is version('3.6.0', '>=') %}
-snapSizeLimitInKb={{ zookeeper_snapSizeLimitInKb }}
+snapSizeLimitInKb={{ zookeeper_snap_size_limit_in_kb }}
 {% endif %}
-{% if zookeeper_autopurge_purgeInterval > 0 %}
-autopurge.purgeInterval={{ zookeeper_autopurge_purgeInterval }}
-autopurge.snapRetainCount={{ zookeeper_autopurge_snapRetainCount }}
+{% if zookeeper_autopurge_purge_interval > 0 %}
+autopurge.purgeInterval={{ zookeeper_autopurge_purge_interval }}
+autopurge.snapRetainCount={{ zookeeper_autopurge_snap_retain_count }}
 {% endif %}
 {% if zookeeper_4lw_commands_whitelist != '' %}
 4lw.commands.whitelist={{ zookeeper_4lw_commands_whitelist }}
