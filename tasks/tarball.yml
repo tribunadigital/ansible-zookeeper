@@ -57,7 +57,7 @@
   file: path={{zookeeper_dir}} state=directory owner=zookeeper group=zookeeper recurse=yes
   tags: bootstrap
 
-- name: "Create zookeeper {{item}} directory."
+- name: Create zookeeper directories
   file: path={{item}} state=directory owner=zookeeper group=zookeeper
   tags: bootstrap
   with_items:
