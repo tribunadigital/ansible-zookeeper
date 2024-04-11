@@ -31,3 +31,8 @@ server.{{server.id}}={{server.host}}:{{zookeeper_cluster_ports}}
 server.{{loop.index}}={{server}}:{{zookeeper_cluster_ports}}
 {% endif %}
 {% endfor %}
+
+{% if zookeeper_prometheus_metrics_enable | bool %}
+metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+metricsProvider.httpPort={{ zookeeper_prometheus_metrics_port }}
+{% endif %}
