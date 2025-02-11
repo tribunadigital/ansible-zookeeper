@@ -54,3 +54,5 @@ zookeeper_force_myid: yes
 # Prometheus metrics
 zookeeper_prometheus_metrics_enable: true
 zookeeper_prometheus_metrics_port: 7000
+
+zookeeper_admin_enable_server: false

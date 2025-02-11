@@ -36,3 +36,5 @@ server.{{loop.index}}={{server}}:{{zookeeper_cluster_ports}}
 metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
 metricsProvider.httpPort={{ zookeeper_prometheus_metrics_port }}
 {% endif %}
+
+admin.enableServer={{ zookeeper_admin_enable_server }}
